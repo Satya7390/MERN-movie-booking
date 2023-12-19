@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { AppBar, Autocomplete, Box, Tab, Tabs, TextField, Toolbar } from '@mui/material'
 import MovieFilterIcon from '@mui/icons-material/MovieFilter';
 import { getAllMovies } from '../api-helpers/api-helpers';
+import { Link } from 'react-router-dom';
 const dumyArray = ["Ram", "Shyam", "Jai Hind", "Jai Bharat"];
 
 const Header = () => {
@@ -20,16 +21,16 @@ const Header = () => {
             <Box position={"auto"} width={"20%"} margin={"auto"} >
                 <Autocomplete
                     freeSolo
-                    options={movies && movies.map((option) => option.title)}
+                    options={dumyArray.map((option) => option)}
                     renderInput={(params) => <TextField
                         sx={{ input: { color: "whitesmoke" } }}  variant='standard' {...params} placeholder="Search Across Multiple movies" />}
                 />
             </Box>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs textColor='inherit' indicatorColor='primary' value={value} onChange={(e,val) => setvalue(val)} >
-                    <Tab label="Movies" />
-                    <Tab label="Admin" />
-                    <Tab label="Auth" />
+                    <Tab LinkComponent={Link} to="/movies" label="Movies" />
+                    <Tab LinkComponent={Link} to="/admin" label="Admin" />
+                    <Tab LinkComponent={Link} to="/auth" label="Auth" />
                 </Tabs>
             </Box>
 
